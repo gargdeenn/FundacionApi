@@ -19,7 +19,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\TypeEventController;
 use App\Http\Controllers\ImageController;
-
+use App\Models\Event;
 
 // Route::post('login', [\App\Http\Controllers\AuthController::class, 'authenticate']);
 
@@ -44,3 +44,4 @@ Route::group([
 });
 //Message
 Route::post('contact', [\App\Http\Controllers\MessageController::class, 'store']);
+Route::get('event/{type_event_id}', [\App\Http\Controllers\EventController::class, 'index']);

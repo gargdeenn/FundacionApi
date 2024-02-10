@@ -14,9 +14,9 @@ class EventService
         $this->eventRepository = $eventRepository;
     }
 
-    public function getAllEvents()
+    public function getAllEvents($id)
     {
-        return $this->eventRepository->getAll();
+        return $this->eventRepository->getAll($id);
     }
 
     public function getEventById($id)

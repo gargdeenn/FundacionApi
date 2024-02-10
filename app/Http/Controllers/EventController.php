@@ -16,9 +16,9 @@ class EventController extends Controller
         $this->eventService = $eventService;
     }
 
-    public function index()
+    public function index($id)
     {
-        return $this->eventService->getAllEvents();
+        return $this->eventService->getAllEvents($id);
     }
 
     public function show($id)
@@ -28,7 +28,7 @@ class EventController extends Controller
 
     public function store(Request $request)
     {
-        Log::info($request);
+        // Log::info($request);
         $request->validate([
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
