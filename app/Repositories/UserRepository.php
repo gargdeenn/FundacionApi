@@ -2,6 +2,7 @@
 namespace App\Repositories;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class UserRepository
 {
@@ -15,9 +16,15 @@ class UserRepository
         return User::findOrFail($id);
     }
 
-    public function create(array $data)
+    public function create(Request $request)
     {
-        return User::create($data);
+        $User = new User();
+        $User->fill($request->all());
+        if($User->save()){
+             return $User;
+        }else{
+            return null;
+        }
     }
 
     public function update($id, array $data)

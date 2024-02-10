@@ -17,7 +17,7 @@ class CreateEventsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('description');
-            $table->string('image_url');
+            $table->string('image')->nullable();
             $table->bigInteger('type_event_id')->unsigned();
             $table->foreign('type_event_id')->references('id')->on('type_events');
             $table->timestamps();

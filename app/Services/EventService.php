@@ -1,7 +1,9 @@
 <?php
 namespace App\Services;
 
+use App\Models\Event;
 use App\Repositories\EventRepository;
+use Illuminate\Http\Request;
 
 class EventService
 {
@@ -22,9 +24,9 @@ class EventService
         return $this->eventRepository->getById($id);
     }
 
-    public function createEvent(array $data)
+    public function createEvent(Event $request)
     {
-        return $this->eventRepository->create($data);
+        return $this->eventRepository->create($request);
     }
 
     public function updateEvent($id, array $data)

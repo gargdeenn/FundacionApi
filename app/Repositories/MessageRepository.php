@@ -2,6 +2,7 @@
 namespace App\Repositories;
 
 use App\Models\Message;
+use Illuminate\Http\Request;
 
 class MessageRepository
 {
@@ -15,9 +16,15 @@ class MessageRepository
         return Message::findOrFail($id);
     }
 
-    public function create(array $data)
+    public function create(Request $request)
     {
-        return Message::create($data);
+        $message = new Message();
+        $message->fill($request->all());
+        if($message->save()){
+             return $message;
+        }else{
+            return null;
+        }
     }
 
     public function update($id, array $data)

@@ -18,10 +18,8 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\TypeEventController;
+use App\Http\Controllers\ImageController;
 
-Route::resource('users', UserController::class);
-Route::resource('messages', MessageController::class);
-Route::resource('eventos', EventoController::class);
 
 // Route::post('login', [\App\Http\Controllers\AuthController::class, 'authenticate']);
 
@@ -33,9 +31,16 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
 ], function ($router) {
+    //auth
     Route::post('login', [\App\Http\Controllers\AuthController::class, 'login']);
     Route::post('logout', [\App\Http\Controllers\AuthController::class, 'logout']);
     Route::post('refresh', [\App\Http\Controllers\AuthController::class, 'refresh']);
     Route::post('me', [\App\Http\Controllers\AuthController::class, 'me']);
-    Route::post('register', [\App\Http\Controllers\AuthController::class, 'register']);
+    //Event
+    Route::post('event', [\App\Http\Controllers\EventController::class, 'store']);
+    //User
+    Route::post('user', [\App\Http\Controllers\UserController::class, 'store']);
+    Route::get('user', [\App\Http\Controllers\UserController::class, 'index']);
 });
+//Message
+Route::post('contact', [\App\Http\Controllers\MessageController::class, 'store']);

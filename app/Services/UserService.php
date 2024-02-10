@@ -4,6 +4,7 @@
 namespace App\Services;
 
 use App\Repositories\UserRepository;
+use Illuminate\Http\Request;
 
 class UserService
 {
@@ -24,9 +25,9 @@ class UserService
         return $this->userRepository->getById($id);
     }
 
-    public function createUser(array $data)
+    public function createUser(Request $request)
     {
-        return $this->userRepository->create($data);
+        return $this->userRepository->create($request);
     }
 
     public function updateUser($id, array $data)

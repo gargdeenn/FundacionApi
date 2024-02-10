@@ -26,7 +26,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        return $this->userService->createUser($request->all());
+        return $this->userService->createUser($request);
     }
 
     public function update(Request $request, $id)

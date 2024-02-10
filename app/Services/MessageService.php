@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Repositories\MessageRepository;
+use Illuminate\Http\Request;
 
 class MessageService
 {
@@ -22,9 +23,9 @@ class MessageService
         return $this->messageRepository->getById($id);
     }
 
-    public function createMessage(array $data)
+    public function createMessage(Request $request)
     {
-        return $this->messageRepository->create($data);
+        return $this->messageRepository->create($request);
     }
 
     public function updateMessage($id, array $data)

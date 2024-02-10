@@ -26,7 +26,7 @@ class MessageController extends Controller
 
     public function store(Request $request)
     {
-        return $this->messageService->createMessage($request->all());
+        return $this->messageService->createMessage($request);
     }
 
     public function update(Request $request, $id)

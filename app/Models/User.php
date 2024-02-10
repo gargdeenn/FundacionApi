@@ -17,7 +17,7 @@ class User extends Authentique implements JWTSubject
     protected $table = 'users';
 
     protected $fillable = [
-        'name', 'password', 'celphone', 'email', 'rol_id'
+        'name', 'password', 'cellphone', 'email', 'rol_id'
     ];
 
     // Resto del modelo...

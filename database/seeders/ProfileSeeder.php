@@ -29,15 +29,10 @@ class ProfileSeeder extends Seeder
         ]);
         User::insert([
             [
-                'name' => 'admin',
-                'username' => 'admin',	
+                'name' => 'Diego',
                 'password' => Hash::make("admin"),	
-                'celphone' => 'admin',	
+                'cellphone' => '3112344333',	
                 'email' => 'admin',	
-                'facebook' => 'admin',	
-                'twitter' => 'admin',	
-                'instagram' => 'admin',	
-                'youtube' => 'admin',	
                 'rol_id' => '1'	
             ]									
         ]);
