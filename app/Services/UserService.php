@@ -30,9 +30,9 @@ class UserService
         return $this->userRepository->create($request);
     }
 
-    public function updateUser($id, array $data)
+    public function updateUser(Request $request)
     {
-        return $this->userRepository->update($id, $data);
+        return $this->userRepository->update($request);
     }
 
     public function deleteUser($id)

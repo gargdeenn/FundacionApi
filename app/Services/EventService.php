@@ -29,9 +29,9 @@ class EventService
         return $this->eventRepository->create($request);
     }
 
-    public function updateEvent($id, array $data)
+    public function updateEvent(Request $request)
     {
-        return $this->eventRepository->update($id, $data);
+        return $this->eventRepository->update($request);
     }
 
     public function deleteEvent($id)

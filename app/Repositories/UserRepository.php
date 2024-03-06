@@ -27,19 +27,15 @@ class UserRepository
         }
     }
 
-    public function update($id, array $data)
+    public function update(Request $request)
     {
-        $user = User::findOrFail($id);
-        $user->update($data);
-
+        $user = User::where('email', $request['email'])->update($request->only(['name', 'cellphone', 'rol_id']));
         return $user;
     }
 
     public function delete($id)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
-
+        $user = User::where('email', $id)->delete();
         return $user;
     }
 }

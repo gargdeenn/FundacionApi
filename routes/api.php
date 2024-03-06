@@ -38,10 +38,16 @@ Route::group([
     Route::post('me', [\App\Http\Controllers\AuthController::class, 'me']);
     //Event
     Route::post('event', [\App\Http\Controllers\EventController::class, 'store']);
+    Route::get('event', [\App\Http\Controllers\EventController::class, 'show']);
+    Route::delete('event/{id}', [\App\Http\Controllers\EventController::class, 'destroy']);
+    Route::put('eventPut', [\App\Http\Controllers\EventController::class, 'update']);
     //User
     Route::post('user', [\App\Http\Controllers\UserController::class, 'store']);
     Route::get('user', [\App\Http\Controllers\UserController::class, 'index']);
+    Route::delete('user/{id}', [\App\Http\Controllers\UserController::class, 'destroy']);
+    Route::put('userPut', [\App\Http\Controllers\UserController::class, 'update']);
 });
 //Message
 Route::post('contact', [\App\Http\Controllers\MessageController::class, 'store']);
 Route::get('event/{type_event_id}', [\App\Http\Controllers\EventController::class, 'index']);
+Route::get('event_id/{id}', [\App\Http\Controllers\EventController::class, 'show']);

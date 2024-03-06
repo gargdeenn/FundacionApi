@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserPutRequest;
+use App\Http\Requests\UserRequest;
 use App\Services\UserService;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -24,14 +25,15 @@ class UserController extends Controller
         return $this->userService->getUserById($id);
     }
 
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        return $this->userService->createUser($request);
+        $response = $this->userService->createUser($request);
+        return $this->returnResponse($response);
     }
 
-    public function update(Request $request, $id)
+    public function update(UserPutRequest $request)
     {
-        return $this->userService->updateUser($id, $request->all());
+        return $this->userService->updateUser($request);
     }
 
     public function destroy($id)

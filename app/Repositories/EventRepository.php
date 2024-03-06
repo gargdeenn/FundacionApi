@@ -16,7 +16,7 @@ class EventRepository
     {
         return Event::findOrFail($id);
     }
-    
+
     public function create(Event $request)
     {
         $event = new Event();
@@ -28,11 +28,11 @@ class EventRepository
         }
     }
 
-    public function update($id, array $data)
+    public function update(Request $request)
     {
-        $event = Event::findOrFail($id);
-        $event->update($data);
-
+        $event = Event::findOrFail($request['id']);
+        // $request['image'] = $event['image'];
+        $event->update($request->only(['name', 'description', 'type_event_id']));
         return $event;
     }
 

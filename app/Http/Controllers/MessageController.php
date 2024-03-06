@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MessageRequest;
 use App\Services\MessageService;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,7 @@ class MessageController extends Controller
         return $this->messageService->getMessageById($id);
     }
 
-    public function store(Request $request)
+    public function store(MessageRequest $request)
     {
         return $this->messageService->createMessage($request);
     }

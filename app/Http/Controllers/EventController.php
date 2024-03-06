@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EventRequest;
+use App\Http\Requests\EventPutRequest;
 use App\Services\EventService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Models\Event;
 
@@ -26,23 +27,14 @@ class EventController extends Controller
         return $this->eventService->getEventById($id);
     }
 
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
         // Log::info($request);
-        $request->validate([
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = $image->getClientOriginalName();
-            $image->move(public_path('images'), $imageName);
+            //Enviar imagen al servidor
+            $imageName = Event::sendImgServer($request);
             // Crea un nuevo evento con los datos del formulario
-            $event = new Event();
-            $event->title = $request->input('title');
-            $event->description = $request->input('description');
-            $event->type_event_id = $request->input('type_event_id');
-            $event->image = 'images/' . $imageName; // Ruta de la imagen
-
+            $event = Event::newEvent($request, $imageName);
             return $this->eventService->createEvent($event);
         } else {
             return response()->json([
@@ -52,9 +44,9 @@ class EventController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(EventPutRequest $request)
     {
-        return $this->eventService->updateEvent($id, $request->all());
+        return $this->eventService->updateEvent($request);
     }
 
     public function destroy($id)
